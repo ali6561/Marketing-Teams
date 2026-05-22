@@ -44,7 +44,7 @@ function Logo() {
 function LandingNav() {
   return (
     <nav style={{ position: 'sticky', top: 0, zIndex: 50, background: 'var(--paper)', borderBottom: 'var(--rail-heavy)', backdropFilter: 'blur(8px)' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 56px', maxWidth: 1500, margin: '0 auto' }}>
+      <div className="nav-shell" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 56px', maxWidth: 1500, margin: '0 auto' }}>
         <a href="#top" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', color: 'inherit' }}>
           <Logo />
           <span style={{ fontFamily: 'Montserrat', fontWeight: 900, fontSize: 18, letterSpacing: '-0.02em' }}>
@@ -67,7 +67,7 @@ function LandingNav() {
 function Hero() {
   return (
     <section className="hero" id="top">
-      <div className="wrap" style={{ display: 'grid', gridTemplateColumns: '1.35fr 0.9fr', gap: 48, alignItems: 'center' }}>
+      <div className="wrap hero-grid" style={{ display: 'grid', gap: 48, alignItems: 'center' }}>
         <div>
           <div className="eyebrow red" style={{ marginBottom: 24 }}>THE AGENCY KILLER</div>
           <h1 style={{ fontSize: 'clamp(54px, 8vw, 128px)', maxWidth: 1080 }}>
@@ -78,7 +78,7 @@ function Hero() {
           <p style={{ maxWidth: 760, fontSize: 22, lineHeight: 1.5, color: 'var(--ink-soft)', marginTop: 28 }}>
             An enterprise-grade AI workforce for independent UK businesses. From £80/month, live in 48 hours, and built to replace the busywork that is draining revenue.
           </p>
-          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginTop: 32 }}>
+          <div className="hero-actions" style={{ display: 'flex', gap: 14, flexWrap: 'wrap', marginTop: 32 }}>
             <a className="btn" href="#directory">View products</a>
             <a className="btn ghost" href="#workforce">Meet the workforce</a>
           </div>
@@ -146,9 +146,9 @@ function ProblemSection() {
           title={<>Three leaks every independent business is suffering, silently.</>}
           lede="The business is usually not broken. The discovery, response, and follow-up layers are leaking value every hour."
         />
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', border: 'var(--rail-heavy)' }}>
+        <div className="problem-grid" style={{ display: 'grid', border: 'var(--rail-heavy)' }}>
           {LANDING_PROBLEMS.map((problem, index) => (
-            <div key={problem.title} style={{ padding: 32, borderRight: index < LANDING_PROBLEMS.length - 1 ? 'var(--rail)' : '0', background: index === 1 ? 'var(--paper-2)' : 'var(--paper)' }}>
+            <div key={problem.title} style={{ padding: 32, borderRight: '0', borderBottom: index < LANDING_PROBLEMS.length - 1 ? 'var(--rail)' : '0', background: index === 1 ? 'var(--paper-2)' : 'var(--paper)' }}>
               <div className="mono" style={{ fontSize: 12, letterSpacing: '0.16em', color: 'var(--ink-mute)' }}>{problem.badge.toUpperCase()}</div>
               <h3 style={{ fontSize: 44, marginTop: 18 }}>{problem.title}</h3>
               <p style={{ fontSize: 18, marginTop: 22, color: 'var(--ink-soft)' }}>{problem.body}</p>
@@ -172,7 +172,7 @@ function WorkforceSection() {
           title={<>Four agents, one operating system.</>}
           lede="Each role has a narrow job, a visible output, and a built-in fallback to avoid hallucinated commitments."
         />
-        <div className="eq-3" style={{ gridTemplateColumns: 'repeat(4, 1fr)' }}>
+        <div className="workforce-grid eq-3" style={{ gridTemplateColumns: 'repeat(4, 1fr)' }}>
           {Object.entries(MASCOTS).map(([key, mascot]) => (
             <div key={key} className="card pop" style={{ padding: 24, background: 'var(--paper)', minHeight: 320 }}>
               <div style={{ height: 120, backgroundImage: `url(${mascot.img})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', marginBottom: 18 }} />
@@ -201,7 +201,7 @@ function DirectorySection() {
           title={<>Pro 365 packages, tuned by industry.</>}
           lede="The same operating model, adjusted for the economics and response patterns of each vertical."
         />
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
+        <div className="directory-grid" style={{ display: 'grid', gap: 16 }}>
           {PRODUCT_ROWS.map((slug) => {
             const product = PRODUCTS[slug];
             return (
@@ -225,7 +225,7 @@ function DirectorySection() {
 function CompareSection() {
   return (
     <section id="compare" className="tight">
-      <div className="wrap" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }}>
+      <div className="wrap compare-grid" style={{ display: 'grid', gap: 18 }}>
         <div className="card solid pop" style={{ padding: 32 }}>
           <div className="eyebrow red" style={{ color: 'var(--paper)' }}>Agency model</div>
           <h3 style={{ fontSize: 38, marginTop: 18 }}>You pay for meetings, not output.</h3>
@@ -254,7 +254,7 @@ function FaqSection() {
 
   return (
     <section id="faq" className="tight">
-      <div className="wrap" style={{ display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: 56 }}>
+      <div className="wrap faq-grid" style={{ display: 'grid', gap: 56 }}>
         <div>
           <div className="section-tag" style={{ marginBottom: 20 }}><span className="dot" />04 · FAQ</div>
           <h2 style={{ fontSize: 'clamp(36px, 4vw, 56px)' }}>No Jargon. Just Answers.</h2>
@@ -303,7 +303,7 @@ function FinalCta() {
 function LandingFooter() {
   return (
     <footer style={{ background: 'var(--paper)', borderTop: 'var(--rail-heavy)', padding: '48px 56px 24px', fontSize: 13 }}>
-      <div className="wrap" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 48 }}>
+      <div className="wrap footer-grid" style={{ display: 'grid', gap: 48 }}>
         <div>
           <Logo />
           <div style={{ fontFamily: 'Montserrat', fontWeight: 900, fontSize: 20, letterSpacing: '-0.02em', marginTop: 12 }}>MARKETING<wbr />TEAMS<span style={{ color: 'var(--c-fiona)' }}>.</span></div>
@@ -329,7 +329,7 @@ function LandingFooter() {
           </div>
         </div>
       </div>
-      <div className="wrap" style={{ marginTop: 40, paddingTop: 20, borderTop: 'var(--rail)', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12, fontFamily: 'JetBrains Mono', fontSize: 11, color: 'var(--ink-mute)' }}>
+      <div className="wrap footer-bottom" style={{ marginTop: 40, paddingTop: 20, borderTop: 'var(--rail)', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12, fontFamily: 'JetBrains Mono', fontSize: 11, color: 'var(--ink-mute)' }}>
         <span>© 2026 MARKETING TEAMS LTD · ENGLAND & WALES</span>
         <span>● ALL WORKFORCES OPERATIONAL</span>
       </div>
@@ -395,7 +395,7 @@ function HireUsPage() {
           <div className="card pop" style={{ marginTop: 32, padding: 28, background: 'var(--paper-2)' }}>
             <div className="section-tag" style={{ marginBottom: 18 }}><span className="dot" />Company details</div>
             <form onSubmit={(event) => event.preventDefault()} style={{ display: 'grid', gap: 18 }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+              <div className="form-grid" style={{ display: 'grid', gap: 16 }}>
                 <label style={{ display: 'grid', gap: 8 }}>
                   <span className="eyebrow">Company name</span>
                   <input style={fieldStyle} type="text" name="companyName" placeholder="company ltd" required />
@@ -411,7 +411,7 @@ function HireUsPage() {
                 <input style={fieldStyle} type="text" name="companyAddress" placeholder="Street, City, Postcode" />
               </label>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+              <div className="form-grid" style={{ display: 'grid', gap: 16 }}>
                 <label style={{ display: 'grid', gap: 8 }}>
                   <span className="eyebrow">Website</span>
                   <input style={fieldStyle} type="url" name="website" placeholder="https://yourcompany.co.uk" />
@@ -433,7 +433,7 @@ function HireUsPage() {
                 </label>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+              <div className="form-grid" style={{ display: 'grid', gap: 16 }}>
                 <label style={{ display: 'grid', gap: 8 }}>
                   <span className="eyebrow">Contact name</span>
                   <input style={fieldStyle} type="text" name="contactName" placeholder="Name" required />
@@ -444,7 +444,7 @@ function HireUsPage() {
                 </label>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+              <div className="form-grid" style={{ display: 'grid', gap: 16 }}>
                 <label style={{ display: 'grid', gap: 8 }}>
                   <span className="eyebrow">Contact email</span>
                   <input style={fieldStyle} type="email" name="contactEmail" placeholder="email@company.co.uk" required />
@@ -457,7 +457,7 @@ function HireUsPage() {
                 <textarea style={{ ...fieldStyle, minHeight: 120, resize: 'vertical' }} name="notes" placeholder="Anything else we should know"></textarea>
               </label>
 
-              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center' }}>
+              <div className="hire-actions" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center' }}>
                 <button className="btn" type="submit">Send details</button>
               </div>
             </form>
